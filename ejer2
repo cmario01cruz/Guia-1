@@ -1,0 +1,26 @@
+const readline = require('readline');
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+const TASA_CAMBIO = 0.92;
+const COMISION = 0.03;
+
+rl.question('Ingrese el monto en Dólares (USD): ', (entrada) => {
+
+    const monto = parseFloat(entrada);
+
+    const comisionUSD = monto * COMISION;
+    const montoNeto = monto - comisionUSD;
+    const montoConvertido = montoNeto * TASA_CAMBIO;
+
+    console.log('\n--- DESGLOSE DE LA CONVERSIÓN ---');
+    console.log('Monto Inicial: $' + monto.toFixed(2));
+    console.log('Comisión en USD: $' + comisionUSD.toFixed(2));
+    console.log('Monto Convertido: ' + montoConvertido.toFixed(2) + ' EUR');
+    console.log('Total recibido en Euros: €' + montoConvertido.toFixed(2));
+
+    rl.close();
+});
